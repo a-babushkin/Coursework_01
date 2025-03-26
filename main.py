@@ -12,13 +12,10 @@ if __name__ == "__main__":
     filtering_transactions = [
         transaction
         for transaction in transactions
-        if type(transaction.get("Номер карты")) != float
-           # Это условие, что бы убрать транзакции без номеров карты
-           and transaction.get("Статус") != "FAILED"
-        # Это условие, что бы убрать битые транзакции
+        if type(transaction.get("Номер карты")) != float and transaction.get("Статус") != "FAILED"
     ]
 
-    # print(main_view_function(input("Введите дату:")))
+    print(main_view_function(input("Введите дату:")))
 
     print(main_services_function(filtering_transactions, input("Введите строку поиска:")))
 

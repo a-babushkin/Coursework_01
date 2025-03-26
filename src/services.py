@@ -1,10 +1,6 @@
 import json
 import logging
-import os
 import re
-from typing import Any
-
-from src.files_reader import get_transaction_from_excel_file
 
 logger = logging.getLogger("services")
 file_handler = logging.FileHandler("C:/Users/owner/PycharmProjects/Coursework_01/logs/services.log", encoding="UTF-8")
@@ -30,4 +26,4 @@ def main_services_function(transactions: list[dict], search_str: str) -> str:
         return json.dumps(result, ensure_ascii=False)
     else:
         logger.error("По указанным параметрам нет возвращаемых данных")
-        return '[{}]'
+        return "[{}]"

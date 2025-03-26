@@ -1,6 +1,6 @@
 import logging
 from datetime import datetime, timedelta
-from typing import Optional, Callable, Any
+from typing import Any, Callable, Optional
 
 import pandas as pd
 
@@ -12,7 +12,7 @@ logger.addHandler(file_handler)
 logger.setLevel(logging.DEBUG)
 
 
-def report_decorator(file_name: str="report.txt") -> Callable:
+def report_decorator(file_name: str = "report.txt") -> Callable:
     def decorator(func: Callable) -> Callable:
         def wrapper(*args: Any, **kwargs: Any) -> Any:
             report_data = func(*args, **kwargs)
