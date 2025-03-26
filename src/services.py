@@ -14,13 +14,11 @@ logger.addHandler(file_handler)
 logger.setLevel(logging.DEBUG)
 
 
-def main_services_function(search_str: str) -> str | list[dict[Any, Any]]:
+def main_services_function(transactions: list[dict], search_str: str) -> str:
     """Функция, принимает на вход строку для поиска и возвращает в ответ строку со всеми транзакциями,
     содержащими запрос в описании или категории в формате JSON"""
 
     pattern = re.compile(re.escape(search_str), re.IGNORECASE)
-    file_name = os.path.dirname(__file__)
-    transactions = get_transaction_from_excel_file(os.path.join(file_name, "../data", "operations.xlsx"))
     result = [
         transaction
         for transaction in transactions
@@ -31,5 +29,5 @@ def main_services_function(search_str: str) -> str | list[dict[Any, Any]]:
         logger.info(f"Функция сработала штатно, получена выборка: {result}")
         return json.dumps(result, ensure_ascii=False)
     else:
-        # logger.error("По указанным параметрам нет возвращаемых данных")
-        return [{}]
+        logger.error("По указанным параметрам нет возвращаемых данных")
+        return '[{}]'
